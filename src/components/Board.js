@@ -21,9 +21,12 @@ export default class Board extends Component {
 							<Tile
 								key={`tile-${i}`}
 								tile={tile}
+								tiles={this.props.tiles}
 								tileActions={this.props.tileActions}
 								hero={this.props.hero}
 								heroActions={this.props.heroActions}
+								game={this.props.game}
+								gameActions={this.props.gameActions}
 							/>
 						);
 					})

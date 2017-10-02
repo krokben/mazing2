@@ -6,6 +6,9 @@ import configureStore from './store';
 import { Provider } from 'react-redux';
 
 const initialState = {
+	game: {
+		shiftAllowed: true
+	},
 	hero: {
 		position: 1,
 		color: '#34495e',
