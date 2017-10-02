@@ -4,6 +4,12 @@ const heroActions = {
 			type: 'CHANGE_POSITION',
 			tile
 		};
+	},
+	changeColor(color) {
+		return {
+			type: 'CHANGE_COLOR',
+			color
+		};
 	}
 };
 

@@ -24,6 +24,18 @@ const tileActions = {
 			type: 'CHANGE_TILE_COLOR',
 			id
 		};
+	},
+	setClickable(id) {
+		return {
+			type: 'SET_CLICKABLE',
+			id
+		};
+	},
+	setUnclickable(id) {
+		return {
+			type: 'SET_UNCLICKABLE',
+			id
+		};
 	}
 };
 

@@ -7,6 +7,7 @@ export default class Board extends Component {
 			width: '320px',
 			height: '320px',
 			margin: 'auto',
+			marginTop: '200px',
 			fontFamily: 'Arial',
 			textAlign: 'right',
 			border: '1px solid #000',

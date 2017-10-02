@@ -3,12 +3,35 @@ import Hero from './Hero';
 
 export default class Tile extends Component {
 	handleClick = () => {
-		if (this.props.game.shiftAllowed) {
-			this.shiftTiles();
-			this.props.heroActions.changePosition(this.props.tile);
-			this.props.tileActions.changeTileColor(this.props.tile.id);
-		}
+		this.setClickable(this.props.tile.id);
+		setTimeout(() => {
+			if (this.props.tile.clickable) {
+				this.props.tileActions.setUnclickable(this.props.tile.id);
+				this.shiftTiles();
+				this.props.heroActions.changePosition(this.props.tile);
+				this.props.heroActions.changeColor(this.props.tile.color);
+				this.props.tileActions.changeTileColor(this.props.tile.id);
+			}
+		}, 1);
 	};
+
+	setClickable() {
+		if (
+			(this.props.tile.color === this.props.hero.color || this.props.hero.color === '#34495e') &&
+			(
+				(this.props.tile.group - this.props.hero.group === 1) ||
+				(this.props.hero.group - this.props.tile.group === 1) ||
+				(this.props.tile.group - this.props.hero.group === 10) ||
+				(this.props.hero.group - this.props.tile.group === 10) ||
+				(this.props.tile.group === this.props.hero.group &&
+					(this.props.tile.id - this.props.hero.position === 1 ||
+						this.props.hero.position - this.props.tile.id === 1)
+				)
+			)
+		) {
+			this.props.tileActions.setClickable(this.props.tile.id);
+		}
+	}
 
 	shiftTiles() {
 		if (this.props.tiles[25].x > 0 && (this.props.tile.group - this.props.hero.group === 10 || (this.props.tile.group === this.props.hero.group && this.props.hero.position < this.props.tile.id))) {
@@ -29,9 +52,7 @@ export default class Tile extends Component {
 			this.props.tileActions.shiftLeft();
 			counter++;
 			if (counter === 64) {
-				clearInterval(interval);
-				this.props.gameActions.toggleShift();
-			}
+				clearInterval(interval);			}
 		}, 1);
 	}
 
@@ -43,7 +64,6 @@ export default class Tile extends Component {
 			counter++;
 			if (counter === 64) {
 				clearInterval(interval);
-				this.props.gameActions.toggleShift();
 			}
 		}, 1);
 	}
@@ -56,7 +76,6 @@ export default class Tile extends Component {
 			counter++;
 			if (counter === 64) {
 				clearInterval(interval);
-				this.props.gameActions.toggleShift();
 			}
 		}, 1);
 	}
@@ -69,7 +88,6 @@ export default class Tile extends Component {
 			counter++;
 			if (counter === 64) {
 				clearInterval(interval);
-				this.props.gameActions.toggleShift();
 			}
 		}, 1);
 	}
