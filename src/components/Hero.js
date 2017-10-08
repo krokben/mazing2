@@ -13,7 +13,6 @@ export default class Hero extends Component {
 
 		return (
 			<div style={style}>
-				{this.props.hero.group}
 			</div>
 		);
 	}

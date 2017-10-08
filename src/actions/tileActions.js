@@ -25,16 +25,10 @@ const tileActions = {
 			id
 		};
 	},
-	setClickable(id) {
+	setClickables(hero) {
 		return {
-			type: 'SET_CLICKABLE',
-			id
-		};
-	},
-	setUnclickable(id) {
-		return {
-			type: 'SET_UNCLICKABLE',
-			id
+			type: 'SET_CLICKABLES',
+			hero
 		};
 	}
 };

@@ -6,11 +6,9 @@ export default class Board extends Component {
 		const style = {
 			width: '320px',
 			height: '320px',
-			margin: 'auto',
-			marginTop: '200px',
+			marginLeft: '64px',
 			fontFamily: 'Arial',
 			textAlign: 'right',
-			border: '1px solid #000',
 			position: 'relative'
 		};
 

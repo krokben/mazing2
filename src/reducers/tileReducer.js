@@ -31,7 +31,7 @@ export default function tileReducer(tiles = [], action) {
 		case 'CHANGE_TILE_COLOR':
 			return tiles.map((tile) => {
 				return tile.id === action.id ?
-					Object.assign({}, tile, {color: '#fff'}) : tile
+					Object.assign({}, tile, {color: '#ecf0f1'}) : tile
 			});
 		case 'SET_CLICKABLE':
 			return tiles.map((tile) => {
@@ -43,6 +43,18 @@ export default function tileReducer(tiles = [], action) {
 			return tiles.map((tile) => {
 				return tile.id === action.id ?
 					Object.assign({}, tile, {clickable: false}) : tile
+			});
+		case 'SET_CLICKABLES':
+			return tiles.map((tile) => {
+				return ((tile.group === action.hero.group &&
+					(tile.id - action.hero.position === 1 || action.hero.position - tile.id === 1)) ||
+					((tile.group - action.hero.group === 1 || action.hero.group - tile.group === 1) &&
+					(tile.id - action.hero.position === 5 || action.hero.position - tile.id === 5 || tile.id - action.hero.position === 30 || action.hero.position - tile.id === 30)) ||
+					((tile.group - action.hero.group === 10 || action.hero.group - tile.group === 10) &&
+					(tile.id - action.hero.position === 21 || action.hero.position - tile.id === 21))) &&
+					(tile.color === action.hero.color || action.hero.color === '#34495e') ?
+					Object.assign({}, tile, {clickable: true}) :
+					Object.assign({}, tile, {clickable: false})
 			});
 		default:
 			return tiles;
